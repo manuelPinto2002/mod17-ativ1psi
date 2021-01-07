@@ -40,5 +40,24 @@ public function store(Request $request){
 $genero=Genero::create($novoGenero);
 	return redirect()->route('generos.show',['id'=>$genero->id_genero]);
 }
+public function edit (Request $request){
+$idGenero=$request->id;
+$genero = Genero::where('id_genero',$idGenero)->first();
+
+return view('generos.edit',['genero'=>$genero]);
+}
+
+public function update (Request $request){
+$idGenero=$request->id;
+$genero=Genero::findOrFail($idGenero);
+
+$autalizarGenero=$request -> validate ([
+		'designacao'=>['required','min:3','max:100'],
+		'observacoes'=>['nullable','min:3','max:255'],
+	]);
+$genero->update($autalizarGenero);
+
+return redirect()->route('generos.show',['id'=>$genero->id_genero]);
+}
 
 }

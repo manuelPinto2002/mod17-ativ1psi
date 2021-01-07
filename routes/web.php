@@ -64,3 +64,11 @@ route::get('/autores/{id}/edit', 'App\http\Controllers\AutoresController@edit')-
 
 route::patch('/autores', 'App\http\Controllers\AutoresController@update')->name('autores.update');
 
+route::get('/editoras/{id}/edit', 'App\http\Controllers\EditorasController@edit')->name('editoras.edit');
+
+route::patch('/editoras', 'App\http\Controllers\EditorasController@update')->name('editoras.update');
+
+route::get('/generos/{id}/edit', 'App\http\Controllers\GenerosController@edit')->name('generos.edit');
+
+route::patch('/generos', 'App\http\Controllers\GenerosController@update')->name('generos.update');
+

@@ -8,8 +8,8 @@ class AutoresController extends Controller
 {
    public function index(){
 	//$autor=autor::all()->sortbydesc('idl');
-	//$autor= Autor::paginate(4);
-	$autor= Autor::all();
+	$autor= Autor::paginate(100);
+	//$autor= Autor::all();
 	return view ('autores.index', ['autores'=>$autor]);
 }
 public function show (Request $request){
@@ -38,8 +38,8 @@ public function store(Request $request){
 		'fotografia'=>['nullable'],
 		
 	]);
-$autor=Autor::create($novoAutor);
-	return redirect()->route('autores.show',['id'=>$autor->id_autor]);
+$Autor=Autor::create($novoAutor);
+	return redirect()->route('autores.show',['id'=>$Autor->id_autor]);
 
 
 
@@ -48,7 +48,7 @@ public function edit (Request $request){
 $idAutor=$request->id;
 $Autor = Autor::where('id_autor',$idAutor)->first();
 
-return view('autores.edit',['autor'=>$autor]);
+return view('autores.edit',['autor'=>$Autor]);
 }
 
 public function update (Request $request){
@@ -63,7 +63,7 @@ $autalizarAutor=$request -> validate ([
 	]);
 $Autor->update($autalizarAutor);
 
-return redirect()->route('autores.show',['id'=>$autor->id_autor]);
+return redirect()->route('autores.show',['id'=>$Autor->id_autor]);
 }
 
 

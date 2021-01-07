@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Create livros</title>
+	<title>Create autores</title>
 </head>
 <body>
-<form action="{{route('livros.update',['id'=>$livro->id_livro])}}" method="post">
+<form action="{{route('autores.update',['id'=>$autor->id_autor])}}" method="post">
 	@csrf
 	@method ('patch')
 Nome: <input type="text" name="nome" value="{{$autor->nome}}"><br>

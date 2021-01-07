@@ -6,7 +6,7 @@
 <body>
 <form action="{{route('autores.store')}}" method="post">
 	@csrf
-
+	
 Nome: <input type="text" name="nome"><br>
 Nacionalidade: <input type="text" name="nacionalidade"><br>
 Data Nascimento: <input type="date" name="data_nascimento"><br>

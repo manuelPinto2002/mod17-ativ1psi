@@ -4,4 +4,4 @@
 	{{$autor->nome}}</a></li>
 @endforeach
 </ul>
-{{$autores->render()}}
+<!--{{$autores->render()}}-->

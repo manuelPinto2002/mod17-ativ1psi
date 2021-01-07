@@ -39,5 +39,25 @@ public function store(Request $request){
 $editora=Editora::create($novoEditora);
 	return redirect()->route('editoras.show',['id'=>$editora->id_editora]);
 }
+public function edit (Request $request){
+$idEditora=$request->id;
+$editora = Editora::where('id_editora',$idEditora)->first();
+
+return view('editoras.edit',['editora'=>$editora]);
+}
+
+public function update (Request $request){
+$idEditora=$request->id;
+$editora=Editora::findOrFail($idEditora);
+
+$autalizarEditora=$request -> validate ([
+		'nome'=>['required','min:3','max:100'],
+		'morada'=>['nullable','min:3','max:100'],
+		'observacoes'=>['nullable','min:3','max:255'],
+	]);
+$editora->update($autalizarEditora);
+
+return redirect()->route('editoras.show',['id'=>$editora->id_editora]);
+}
 
 }
