@@ -60,4 +60,18 @@ $editora->update($autalizarEditora);
 return redirect()->route('editoras.show',['id'=>$editora->id_editora]);
 }
 
+public function delete(Request $request){
+$idEditora=$request->id;
+$editora = Livro::where('id_editora',$idEditora)->first();
+
+return view('livros.delete',['editora'=>$editora]);
+}
+
+public function destroy(Request $request){
+$idEditora=$request->id;
+$editora=Editora::findOrFail($idEditora);
+$editora->delete();
+
+return redirect()->route('editoras.index')->with('mensagem','editora eliminado!');
+}
 }

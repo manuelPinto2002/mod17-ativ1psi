@@ -7,3 +7,10 @@ nacionalidade:{{$autor->nacionalidade}}
 
 <br>
 <a href="{{route('autores.edit',['id'=>$autor->id_autor])}}">Editar</a>
+
+<a href="{{route('autores.delete',['id'=>$autor->id_autor])}}">Eliminar</a>
+@if(session()->has('mensagem'))
+<div class="alert alert-danger" role="alert">
+{{session('mensagem')}}
+</div>
+@endif

@@ -6,3 +6,10 @@ Observações:{{$genero->observacoes}}
 @endforeach
 <br>
 <a href="{{route('generos.edit',['id'=>$genero->id_genero])}}">Editar</a>
+
+<a href="{{route('generos.delete',['id'=>$genero->id_genero])}}">Eliminar</a>
+@if(session()->has('mensagem'))
+<div class="alert alert-danger" role="alert">
+{{session('mensagem')}}
+</div>
+@endif

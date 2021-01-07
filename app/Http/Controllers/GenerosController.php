@@ -59,5 +59,19 @@ $genero->update($autalizarGenero);
 
 return redirect()->route('generos.show',['id'=>$genero->id_genero]);
 }
+public function delete(Request $request){
+$idGenero=$request->id;
+$genero = Livro::where('id_genero',$idGenero)->first();
+
+return view('generos.delete',['genero'=>$genero]);
+}
+
+public function destroy(Request $request){
+$idGenero=$request->id;
+$genero=Genero::findOrFail($idGenero);
+$genero->delete();
+
+return redirect()->route('generos.index')->with('mensagem','genero eliminado!');
+}
 
 }

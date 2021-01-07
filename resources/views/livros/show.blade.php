@@ -49,3 +49,9 @@ Isbn:{{$livro->isbn}}<br>
 <br>
 <br>
 <a href="{{route('livros.edit',['id'=>$livro->id_livro])}}">Editar</a>
+<a href="{{route('livros.delete',['id'=>$livro->id_livro])}}">Eliminar</a>
+@if(session()->has('mensagem'))
+<div class="alert alert-danger" role="alert">
+{{session('mensagem')}}
+</div>
+@endif

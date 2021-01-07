@@ -8,9 +8,9 @@ class AutoresController extends Controller
 {
    public function index(){
 	//$autor=autor::all()->sortbydesc('idl');
-	$autor= Autor::paginate(100);
+	$Autor= Autor::paginate(100);
 	//$autor= Autor::all();
-	return view ('autores.index', ['autores'=>$autor]);
+	return view ('autores.index', ['autores'=>$Autor]);
 }
 public function show (Request $request){
 	$idAutor=$request->id;
@@ -19,9 +19,9 @@ public function show (Request $request){
 
 	//$livro= livro::find($idLivro);
 
-	$autor=Autor::where('id_autor',$idAutor)->first();
+	$Autor=Autor::where('id_autor',$idAutor)->first();
 	
-	return view ('autores.show',['autor'=>$autor]);
+	return view ('autores.show',['Autor'=>$Autor]);
 }
 public function create() {
 
@@ -65,7 +65,20 @@ $Autor->update($autalizarAutor);
 
 return redirect()->route('autores.show',['id'=>$Autor->id_autor]);
 }
+public function delete(Request $request){
+$idAutor=$request->id;
+$Autor = Autor::where('id_Autor',$idAutor)->first();
 
+return view('Autors.delete',['Autor'=>$Autor]);
+}
+
+public function destroy(Request $request){
+$idAutor=$request->id;
+$Autor=Autor::findOrFail($idAutor);
+$Autor->delete();
+
+return redirect()->route('Autors.index')->with('mensagem','Autor eliminado!');
+}
 
 
 }

@@ -72,3 +72,20 @@ route::get('/generos/{id}/edit', 'App\http\Controllers\GenerosController@edit')-
 
 route::patch('/generos', 'App\http\Controllers\GenerosController@update')->name('generos.update');
 
+//Delete
+
+route::get('/livros/{id}/delete', 'App\http\Controllers\LivrosController@delete')->name('livros.delete');
+
+route::delete('/livros', 'App\http\Controllers\LivrosController@destroy')->name('livros.destroy');
+
+route::get('/generos/{id}/delete', 'App\http\Controllers\GenerosController@delete')->name('generos.delete');
+
+route::delete('/generos', 'App\http\Controllers\GenerosController@destroy')->name('generos.destroy');
+
+route::get('/editoras/{id}/delete', 'App\http\Controllers\EditorasController@delete')->name('editoras.delete');
+
+route::delete('/editoras', 'App\http\Controllers\EditorasController@destroy')->name('editoras.destroy');
+
+route::get('/autores/{id}/delete', 'App\http\Controllers\autoresController@delete')->name('autores.delete');
+
+route::delete('/autores', 'App\http\Controllers\AutoresController@destroy')->name('autores.destroy');
