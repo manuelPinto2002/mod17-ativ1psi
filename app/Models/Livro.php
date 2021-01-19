@@ -20,13 +20,13 @@ public function autor(){
 
   	return $this->belongsTo('App\Models\Autor', 'id_autor');
   }
-     public function editoras(){
+     public function editora(){
         return $this->hasMany('App\Models\Editora', 'id_editora');
     }
   public function autores(){
   	return $this->belongsToMany('App\Models\Autor','autores_livros','id_livro','id_autor')->withTimestamps();
   }
-  public function editores(){
+  public function editoras(){
     return $this->belongsToMany('App\Models\Editora','editoras_livros','id_livro','id_editora')->withTimestamps();
   }
 

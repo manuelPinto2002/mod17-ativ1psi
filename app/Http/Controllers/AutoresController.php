@@ -69,7 +69,7 @@ public function delete(Request $request){
 $idAutor=$request->id;
 $Autor = Autor::where('id_Autor',$idAutor)->first();
 
-return view('Autors.delete',['Autor'=>$Autor]);
+return view('autores.delete',['Autor'=>$Autor]);
 }
 
 public function destroy(Request $request){
@@ -77,7 +77,7 @@ $idAutor=$request->id;
 $Autor=Autor::findOrFail($idAutor);
 $Autor->delete();
 
-return redirect()->route('Autors.index')->with('mensagem','Autor eliminado!');
+return redirect()->route('autores.index')->with('mensagem','Autor eliminado!');
 }
 
 

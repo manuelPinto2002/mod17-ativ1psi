@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use Illuminate\Http\Request;
 use App\Models\Livro;
+use App\Models\Genero;
+use App\Models\Autor;
+use App\Models\Editora;
 
 class LivrosController extends Controller
 {
@@ -29,9 +32,15 @@ public function show (Request $request){
 }
 
 public function create() {
+$generos=Genero::all();
+$autores=Autor::all();
+$editoras=Editora::all();
 
-	
-	return view ('livros.create');
+	return view ('livros.create',[
+	'generos'=>$generos,
+	'autores'=>$autores,
+	'editoras'=>$editoras
+	]);
 }
 public function store(Request $request){
 	// $novoLivro = $request ->all()
@@ -45,19 +54,42 @@ public function store(Request $request){
 		'observacoes'=>['nullable','min:3','max:255'],
 		'imagem_capa'=>['nullable'],
 		'id_genero'=>['nullable','numeric'],
-		'id_autor'=>['nullable','numeric'],
+		//'id_autor'=>['nullable','numeric'],
 		'sinopse'=>['nullable','min:3','max:255'],
 	]);
+	$editoras=$request->id_editora;
+	$autores=$request->id_autor;
 $livro=livro::create($novoLivro);
+$livro->autores()->attach($autores);
+$livro->editoras()->attach($editoras);
+
 	return redirect()->route('livros.show',['id'=>$livro->id_livro]);
 }
 
 
 public function edit (Request $request){
 $idLivro=$request->id;
-$livro = Livro::where('id_livro',$idLivro)->first();
+$generos=Genero::all();
+$autores=Autor::all();
+$editoras=Editora::all();
 
-return view('livros.edit',['livro'=>$livro]);
+$livro = Livro::where('id_livro',$idLivro)->with('autores','editoras')->first();
+$autoresLivros=[];
+
+foreach($livro->autores as $autor) {
+	$autoresLivros[]=$autor->id_autor;
+}
+$editorasLivros=[];
+foreach($livro->editoras as $editora) {
+	$editorasLivros[]=$editora->id_editora;
+}
+return view('livros.edit',['livro'=>$livro,
+	'generos'=>$generos,
+	'autores'=>$autores,
+	'autoresLivros'=>$autoresLivros,
+	'editoras'=>$editoras,
+	'editorasLivros'=>$editorasLivros
+]);
 }
 
 public function update (Request $request){
@@ -73,10 +105,14 @@ $autalizarLivro=$request -> validate ([
 		'observacoes'=>['nullable','min:3','max:255'],
 		'imagem_capa'=>['nullable'],
 		'id_genero'=>['nullable','numeric'],
-		'id_autor'=>['nullable','numeric'],
+		//'id_autor'=>['nullable','numeric'],
 		'sinopse'=>['nullable','min:3','max:255'],
 	]);
+$autores=$request->id_autor;
+$editoras=$request->id_editora;
 $livro->update($autalizarLivro);
+$livro->autores()->sync($autores);
+$livro->editoras()->sync($editoras);
 
 return redirect()->route('livros.show',['id'=>$livro->id_livro]);
 }
@@ -91,6 +127,9 @@ return view('livros.delete',['livro'=>$livro]);
 public function destroy(Request $request){
 $idLivro=$request->id;
 $livro=Livro::findOrFail($idLivro);
+$autoresLivros=Livro::findOrFail($idLivro)->autores;
+$livro->autores()->detach($autoresLivros);
+
 $livro->delete();
 
 return redirect()->route('livros.index')->with('mensagem','livro eliminado!');

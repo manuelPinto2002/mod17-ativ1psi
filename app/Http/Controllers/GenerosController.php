@@ -61,7 +61,7 @@ return redirect()->route('generos.show',['id'=>$genero->id_genero]);
 }
 public function delete(Request $request){
 $idGenero=$request->id;
-$genero = Livro::where('id_genero',$idGenero)->first();
+$genero = Genero::where('id_genero',$idGenero)->first();
 
 return view('generos.delete',['genero'=>$genero]);
 }
