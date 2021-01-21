@@ -1,3 +1,4 @@
+@extends('layouts.app')
 ID:{{$genero->id_genero}}<br>
 designação:{{$genero->designacao}}<br>
 Observações:{{$genero->observacoes}}

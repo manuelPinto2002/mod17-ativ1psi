@@ -18,7 +18,7 @@ $livro= Livro::all();
 }
 public function show (Request $request){
 	$idLivro=$request->id;
-
+    
 	//$livro = Livro::findOrFail($idLivro);
 
 	//$livro= livro::find($idLivro);
@@ -56,6 +56,7 @@ public function store(Request $request){
 		'id_genero'=>['nullable','numeric'],
 		//'id_autor'=>['nullable','numeric'],
 		'sinopse'=>['nullable','min:3','max:255'],
+		'id_user'=>['nullable','required','min:1','max:50'],
 	]);
 	$editoras=$request->id_editora;
 	$autores=$request->id_autor;
@@ -107,6 +108,7 @@ $autalizarLivro=$request -> validate ([
 		'id_genero'=>['nullable','numeric'],
 		//'id_autor'=>['nullable','numeric'],
 		'sinopse'=>['nullable','min:3','max:255'],
+		'id_user'=>['nullable','required','min:1','max:50'],
 	]);
 $autores=$request->id_autor;
 $editoras=$request->id_editora;

@@ -1,3 +1,5 @@
+@extends('layouts.app')
+
 	@if(auth()->check())
 Id utilizador: {{Auth::user()->id}}<br>
 Email: {{Auth::user()->email}}<br>

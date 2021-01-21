@@ -92,9 +92,13 @@ route::delete('/editoras', 'App\http\Controllers\EditorasController@destroy')->n
 route::get('/autores/{id}/delete', 'App\http\Controllers\autoresController@delete')->name('autores.delete')->middleware('auth');
 
 route::delete('/autores', 'App\http\Controllers\AutoresController@destroy')->name('autores.destroy')->middleware('auth');
+
+
+
 Auth::routes();
 
 
 
 //login
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

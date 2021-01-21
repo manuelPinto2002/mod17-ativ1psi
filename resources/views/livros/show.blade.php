@@ -1,20 +1,19 @@
-	@if(auth()->check())
-{{Auth::user()->id}}<br>
-{{Auth::user()->email}}<br>
-{{Auth::user()->name}}<br>
-	@endif
-	<br>
+@extends('layouts.app')
 
+<?php 
+if(auth::check()){
+ 
+	$userAtual=Auth::user()->id;
+	$livro['id_user']=$userAtual;
+	echo $userAtual;
 
-
-
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="fa/css/all.css">
-	<script type="text/javascript" src="fa/js/all.js"></script>
-	<script src="js/jquery-3.5.1.min.js" type="text/javascript"></script>
-	<script src="js/bootstrap.min.js" type="text/javascript"></script>
-
-
+}
+else{
+	echo "Erro Utilizador";
+	
+}
+?>
+@section('content')
 <p style="color: red;">ID:{{$livro->id_livro}}<br></p>
 Titulo:{{$livro->titulo}}<br>
 Idioma:{{$livro->idioma}}<br>
@@ -77,3 +76,8 @@ Isbn:{{$livro->isbn}}<br>
 <a href="{{route('livros.edit',['id'=>$livro->id_livro])}}">Editar</a>
 <a href="{{route('livros.delete',['id'=>$livro->id_livro])}}">Eliminar</a>
 @endif
+
+
+
+
+@endsection

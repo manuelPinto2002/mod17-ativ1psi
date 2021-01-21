@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>edit livros</title>
-</head>
-<body>
+@extends('layouts.app')
+
+
+
+
+
+@section('content')
 <form action="{{route('livros.update',['id'=>$livro->id_livro])}}" method="post">
 	@csrf
 	@method ('patch')
@@ -56,5 +57,7 @@ Sinopse: <textarea name="sinopse">{{$livro->sinopse}} </textarea><br>
 
 </form>
 
-</body>
-</html>
+
+
+
+@endsection

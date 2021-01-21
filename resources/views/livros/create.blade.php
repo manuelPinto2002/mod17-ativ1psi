@@ -1,12 +1,18 @@
+@extends('layouts.app')
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Create livros</title>
 </head>
 <body>
+	@section('content')
 <form action="{{route('livros.store')}}" method="post">
 	@csrf
-
+Id utilizador : <input type="text" value="{{Auth::user()->id}}"  style="display:none" />{{Auth::user()->id}} <br>
 Titulo: <input type="text" name="titulo"><br>
 Idioma: <input type="text" name="idioma"><br>
 Total paginas: <input type="text" name="total_paginas"><br>
@@ -37,11 +43,12 @@ Editora: <select name="id_editora[]" multiple="multiple">
 Sinopse: <textarea name="sinopse">{{old('sinopse')}} </textarea><br>
 
 
-<br>
-
-
 <input type="submit" value="Enviar">
 </form>
 
 </body>
 </html>
+
+
+
+@endsection

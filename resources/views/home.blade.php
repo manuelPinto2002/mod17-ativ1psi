@@ -14,16 +14,33 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ __('Você está logado!') }}
 
-<br>
-<a href="{{route('livros.index')}}">Livros</a>
-<br>
-<a href="{{route('generos.index')}}">Generos</a>
-<br>
-<a href="{{route('editoras.index')}}">Editoras</a>
-<br>
-<a href="{{route('autores.index')}}">Autores</a>
+
+
+
+                <div align="center">
+                <div class="col-md-6">
+                     
+                    <button type="button" class="btn btn-md btn-outline-info ">
+                      <a href="{{route('livros.index')}}">Livros</a>
+                    </button> 
+                    <button type="button" class="btn btn-md btn-outline-info ">
+                   <a href="{{route('generos.index')}}">Generos</a>
+                    </button>
+                </div>
+                <div class="col-md-6">
+                     
+                    <button type="button" class="btn btn-outline-info btn-block">
+                   <a href="{{route('editoras.index')}}">Editoras</a>
+                    </button> 
+                    <button type="button" class="btn btn-outline-info btn-block">
+                       <a href="{{route('autores.index')}}">Autores</a>
+                    </button>
+                </div>
+                </div>
+
+
 
                 </div>
             </div>

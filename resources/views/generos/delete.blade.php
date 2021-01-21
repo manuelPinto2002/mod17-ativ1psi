@@ -1,3 +1,4 @@
+@extends('layouts.app')
 <h2>deseja eliminar o genero</h2>
 <h2>{{$genero->designacao}}</h2>
 
