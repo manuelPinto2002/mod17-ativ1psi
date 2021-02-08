@@ -6,13 +6,8 @@ if(auth::check()){
 	$userAtual=Auth::user()->id;
 	$livro['id_user']=$userAtual;
 	echo $userAtual;
-
-}
-else{
-	echo "Erro Utilizador";
-	
-}
 ?>
+
 @section('content')
 <p style="color: red;">ID:{{$livro->id_livro}}<br></p>
 Titulo:{{$livro->titulo}}<br>
@@ -31,7 +26,7 @@ Isbn:{{$livro->isbn}}<br>
 <br>
 <br>
 <hr/>
-<p style="color: blue">Autores:<br></p>
+<p style="color: red ; text-align:center;" class="bg-info">Autores:<br></p>
 
  @if(count($livro->autores)>0)
  
@@ -50,7 +45,7 @@ Isbn:{{$livro->isbn}}<br>
 <br>
 <br>
 <hr/>
-<p style="color: blue">Editoras:<br></p>
+<p style="color: red; text-align:center; " class="bg-info">Editoras:<br></p>
 
 @if(count($livro->editoras)>0)
 @foreach($livro->editoras as $editora)
@@ -72,12 +67,32 @@ Isbn:{{$livro->isbn}}<br>
 
 @endif
 
+
+
 @if(auth()->check())
+@if( $livro['id_user'] == $userAtual)
 <a href="{{route('livros.edit',['id'=>$livro->id_livro])}}">Editar</a>
 <a href="{{route('livros.delete',['id'=>$livro->id_livro])}}">Eliminar</a>
+@endif
 @endif
 
 
 
-
 @endsection
+
+
+
+
+<?php
+}
+
+
+
+
+
+
+else{
+	echo "Erro Utilizador";
+	
+}
+?>

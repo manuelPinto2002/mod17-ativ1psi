@@ -1,3 +1,5 @@
+@extends('layouts.app')
+
 <h2>deseja eliminar o autor</h2>
 <h2>{{$Autor->nome}}</h2>
 

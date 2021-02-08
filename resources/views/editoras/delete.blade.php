@@ -1,3 +1,7 @@
+@extends('layouts.app')
+
+
+
 <h2>deseja eliminar o editora</h2>
 <h2>{{$editora->nome}}</h2>
 
