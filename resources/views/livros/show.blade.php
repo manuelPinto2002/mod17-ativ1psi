@@ -1,12 +1,20 @@
 @extends('layouts.app')
+<!--id criador pagina tem de ser igual id utilizador para editar e deletar-->
 
+
+ID:{{$livro->id_user}}<br>
+<?php 
+$idcr=$livro['id_user'];
+
+ ?>
 <?php 
 if(auth::check()){
- 
 	$userAtual=Auth::user()->id;
 	$livro['id_user']=$userAtual;
 	echo $userAtual;
+
 ?>
+
 
 @section('content')
 <p style="color: red;">ID:{{$livro->id_livro}}<br></p>
@@ -46,6 +54,9 @@ Isbn:{{$livro->isbn}}<br>
 <br>
 <hr/>
 <p style="color: red; text-align:center; " class="bg-info">Editoras:<br></p>
+	
+
+
 
 @if(count($livro->editoras)>0)
 @foreach($livro->editoras as $editora)
@@ -68,9 +79,8 @@ Isbn:{{$livro->isbn}}<br>
 @endif
 
 
-
 @if(auth()->check())
-@if( $livro['id_user'] == $userAtual)
+@if($idcr == $userAtual)
 <a href="{{route('livros.edit',['id'=>$livro->id_livro])}}">Editar</a>
 <a href="{{route('livros.delete',['id'=>$livro->id_livro])}}">Eliminar</a>
 @endif

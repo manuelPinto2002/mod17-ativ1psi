@@ -29,7 +29,7 @@ document.getElementById('logout-form').submit();">
 	<a href="{{route('livros.show',['id'=>$livro->id_livro])}}">
 		{{$livro->titulo}}
 	</a>
-
+ID: {{$livro->id_user}}
 </li>
 @endforeach
 <br>
