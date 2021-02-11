@@ -7,13 +7,7 @@ ID:{{$livro->id_user}}<br>
 $idcr=$livro['id_user'];
 
  ?>
-<?php 
-if(auth::check()){
-	$userAtual=Auth::user()->id;
-	$livro['id_user']=$userAtual;
-	echo $userAtual;
 
-?>
 
 
 @section('content')
@@ -79,30 +73,14 @@ Isbn:{{$livro->isbn}}<br>
 @endif
 
 
-@if(auth()->check())
-@if($idcr == $userAtual)
-<a href="{{route('livros.edit',['id'=>$livro->id_livro])}}">Editar</a>
-<a href="{{route('livros.delete',['id'=>$livro->id_livro])}}">Eliminar</a>
-@endif
-@endif
 
+@if(auth()->user()->id  )
+<!--== $livro->id_user-->
+            <a href="{{route('livros.edit',['id'=>$livro->id_livro])}}" >Editar Livro</a>
 
+            <a href="{{route('livros.delete',['id'=>$livro->id_livro])}}" class="btn btn-primary">Eliminar Livro</a> 
+
+@endif
 
 @endsection
 
-
-
-
-<?php
-}
-
-
-
-
-
-
-else{
-	echo "Erro Utilizador";
-	
-}
-?>
