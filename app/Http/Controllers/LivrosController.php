@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use App\Models\Livro;
 use App\Models\Genero;
 use App\Models\Autor;
@@ -104,6 +105,9 @@ class LivrosController extends Controller
 			$editoras=Editora::all();
 
 			$livro = Livro::where('id_livro',$idLivro)->with(['autores','editoras','user'])->first();
+			if (Gate::allows('atualizar-livro',$livro)||Gate::allows('admin')) {
+				# code...
+			
 			$autoresLivros=[];
 
 			foreach($livro->autores as $autor) {
@@ -120,6 +124,11 @@ class LivrosController extends Controller
 				'editoras'=>$editoras,
 				'editorasLivros'=>$editorasLivros
 			]);
+			}
+			else{
+				return redirect()->route('livros.index')
+				->with('mensagem','Não tem permissão para aceder à area pendendida.');
+			}
 		}
 
 		public function update (Request $request){

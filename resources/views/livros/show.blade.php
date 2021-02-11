@@ -76,8 +76,10 @@ Isbn:{{$livro->isbn}}<br>
 
 @if(auth()->user()->id  )
 <!--== $livro->id_user-->
-            <a href="{{route('livros.edit',['id'=>$livro->id_livro])}}" >Editar Livro</a>
 
+@if(Gate::allows('atualizar-livro',$livro)|| Gate::allows('admin'))
+            <a href="{{route('livros.edit',['id'=>$livro->id_livro])}}" >Editar Livro</a>
+@endif
             <a href="{{route('livros.delete',['id'=>$livro->id_livro])}}" class="btn btn-primary">Eliminar Livro</a> 
 
 @endif
